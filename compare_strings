@@ -1,0 +1,35 @@
+def compare_strings(history_name, station_name):
+    history_name = history_name.lower()
+    station_name = station_name.lower()
+    if history_name[0]!=station_name[0]:
+        return False
+    compare_result = True
+    isCompName = False
+    for x in station_name:
+        if x == '.':
+            isCompName = True
+    if isCompName:
+        for i in range(len(station_name)):
+            if station_name[i] != '.':
+                try:
+                    for j in range(len(history_name)):
+                        if station_name[i] == history_name[j]:
+                            compare_result = True
+                            history_name = history_name[j + 1:]
+                            break
+                        else:
+                            # if station_name == 'азов':
+                            #    print (history_name)
+                            compare_result = False
+                    if not compare_result:
+                        return False
+                except:
+                    return False
+                if len(station_name[i + 1:]) > len(history_name):
+                    return False
+        return True
+    else:
+        try:
+            return (station_name==history_name[:len(history_name)-1])
+        except:
+            return False
